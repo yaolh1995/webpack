@@ -7,7 +7,9 @@ module.exports = {
   ...base,
   mode: 'production',
 
+
   module: {
+    ...base.module.rules,
     rules: [{
       test: /\.css$/i,
       use: [

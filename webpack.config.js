@@ -10,7 +10,9 @@ module.exports = {
     contentBase: './dist'
   },//开发时使用
   module: {
-    rules: [{
+    rules: [
+      ...base.module.rules,
+      {
       test: /\.css$/i,
       use: ['style-loader', 'css-loader'], 
     }, ],
