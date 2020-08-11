@@ -1,38 +1,19 @@
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const base =require('./webpack.config.base.js')
 module.exports = {
-    mode: 'development',
-    entry: './src/index.js',//路径名
+  ...base,
+  mode: 'development',
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: './dist'
+  },//开发时使用
+  module: {
+    rules: [{
+      test: /\.css$/i,
+      use: ['style-loader', 'css-loader'], 
+    }, ],
 
-
-      devtool: 'inline-source-map',
-       devServer: {
-          contentBase: './dist'
-      },git
-/*       module: {
-        rules: [
-          {
-            test: /\.css$/i,
-            use: ['style-loader', 'css-loader'],
-          },
-        ],
-        
-      }, */
-      plugins: [new HtmlWebpackPlugin({
-        title:'webpack',
-        template:'src/index.html'
-    })],
-    plugins: [new MiniCssExtractPlugin()],
-    module: {
-      rules: [
-        {
-          test: /\.css$/i,
-          use: [MiniCssExtractPlugin.loader, 'css-loader'],
-        },
-      ],
-    },
-    output: {
-        filename: 'index.[contenthash].js'
-      },
-    };
+  },
+}; 
