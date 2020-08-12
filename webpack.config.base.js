@@ -2,7 +2,15 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   module: {
-    rules: [{
+    rules: [
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ["file-loader"]
+      },{
+          test: /\.styl$/,
+          loader: ['style-loader', 'css-loader', 'stylus-loader']
+      },
+      {
         test: /\.less$/,
         loader: ["style-loader", "css-loader", "less-loader"],
       },
